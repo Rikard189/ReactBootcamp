@@ -46,9 +46,9 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Liked Videos', 'Home'].map((text, index) => (
+        {['Home', 'Liked Videos'].map((text, index) => (
             <ListItem button key={text}>
-                <ListItemIcon> {index === 0 ? <ThumbUpIcon /> : <HomeIcon />} </ListItemIcon>
+                <ListItemIcon> {index === 0 ?  <HomeIcon /> : <ThumbUpIcon />} </ListItemIcon>
                 <ListItemText primary={text} />
             </ListItem>
         ))}  
