@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import CardVideo from '../components/CardVideo';
+import CardVideo from '../../components/CardVideo';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import './Home.styles.scss';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -19,22 +20,22 @@ export default class Home extends React.Component {
     renderVideos = async () => {
         try {
             let response = await axios.get(
-                'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLRW7iEDD9RDStI3Uc2RCFbqdilK2pQO97&key=AIzaSyDdCvn8cIfFpDn-9sVkGHiJ_SYVbeoHVwA&maxResults=50', {
+                'https://youtube.googleapis.com/youtube/v3/videos', {
                     params: {
                         part: 'snippet',
-                        playlistId: 'PLRW7iEDD9RDStI3Uc2RCFbqdilK2pQO97',
+                        chart: 'mostPopular',
                         key: 'AIzaSyDdCvn8cIfFpDn-9sVkGHiJ_SYVbeoHVwA',
-                        maxResults: 50
+                        maxResults: 20
                     }
                 }
             )
             
-            console.log(response.data.items)
+            console.log(response)
             this.setState({
                 Videos: response.data.items.map((video) => {
                     let videoInfo = video.snippet;
                     return (
-                        <Grid key={videoInfo.videoId} item>
+                        <Grid key={video.id} item>
                             <CardVideo videoInfo={videoInfo} />
                         </Grid>
                     )
@@ -47,8 +48,8 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>HOME</h1>
+            <div className="home-page">
+                <h1 className="home-header">REACT BOOTCAMP 2020</h1>
                 <Container maxWidth={false}>
                     <Grid container justify="center" spacing={3} >
                         {this.state.Videos}

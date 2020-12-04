@@ -1,0 +1,16 @@
+.home-page {
+    .home-header {
+        font-size: 48px;
+        font-weight: 800;
+        background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+    }
+
+    @media(max-width: 480px){
+        .home-header {
+            font-size: 32px;
+        }
+    }
+}
