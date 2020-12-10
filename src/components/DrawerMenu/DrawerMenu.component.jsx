@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,6 +8,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
+import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -47,10 +48,12 @@ export default function TemporaryDrawer() {
     >
       <List>
         {['Home', 'Liked Videos'].map((text, index) => (
-            <ListItem button key={text}>
-                <ListItemIcon> {index === 0 ?  <HomeIcon /> : <ThumbUpIcon />} </ListItemIcon>
+          // <Link key={text} to={index === 0 ? '/' : '/login'} style={{textDecoration: 'none'}}>
+            <ListItem button component={Link} to={index === 0 ? '/' : '/login'} key="text">
+                <ListItemIcon> {index === 0 ? <HomeIcon /> : <ThumbUpIcon />} </ListItemIcon>
                 <ListItemText primary={text} />
             </ListItem>
+          // </Link>
         ))}  
       </List>
     </div>

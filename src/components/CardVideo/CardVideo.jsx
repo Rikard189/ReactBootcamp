@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = _theme => ({
     root: {
@@ -23,31 +24,34 @@ class CardVideo extends React.Component {
         const { classes, videoInfo} = this.props;
 
         return (
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={videoInfo.thumbnails.standard.url}
-                        title={videoInfo.title}
-                    />
-                    <CardContent>
-                        <Typography noWrap gutterBottom variant="h5" component="h2">
-                            {videoInfo.title}
-                        </Typography>
-                        <Typography noWrap variant="body2" color="textSecondary" component="p">
-                            {videoInfo.description}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        Share
-                    </Button>
-                    <Button size="small" color="primary">
-                        Learn More
-                    </Button>
-                </CardActions>
-            </Card>
+            <Grid item>
+                <Card className={classes.root}>
+                    <CardActionArea>
+                        <CardMedia
+                            className={classes.media}
+                            image={videoInfo.snippet.thumbnails.high.url}
+                            title={videoInfo.snippet.title}
+                        />
+                        <CardContent>
+                            <Typography noWrap gutterBottom variant="h5" component="h2">
+                                {videoInfo.snippet.title}
+                            </Typography>
+                            <Typography noWrap variant="body2" color="textSecondary" component="p">
+                                {videoInfo.snippet.description}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                            Share
+                        </Button>
+                        <Button size="small" color="primary">
+                            Learn More
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+            
         );
     }
 }

@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DrawerMenu from '../DrawerMenu';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import { Link } from 'react-router-dom';
 import './Navbar.style.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -56,9 +57,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Navbar(){
+export default function Navbar(props){
     const classes = useStyles();
     const width = window.innerWidth;
+
+    function handleSearch(event){
+        if(event.key === 'Enter'){
+            props.handleSearch(event.target.value)
+        }
+    }
 
     return (
         <div className={classes.root}>
@@ -75,7 +82,8 @@ export default function Navbar(){
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="Search…"
+                            placeholder="Search a Video…"
+                            onKeyPress={handleSearch}
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
@@ -83,7 +91,7 @@ export default function Navbar(){
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
-                    <Button className="login-btn">Login</Button>
+                    <Button className="login-btn" component={Link} to='/login'>Login</Button>
                 </Toolbar>
             </AppBar>
         </div>
